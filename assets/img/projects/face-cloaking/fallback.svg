@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Face cloaking fallback cover</title>
+  <desc id="desc">A red and dark computer vision privacy visual showing face recognition disrupted by frequency cloaking.</desc>
+  <rect width="1200" height="750" fill="#0e1013"/>
+  <rect x="130" y="115" width="370" height="470" rx="26" fill="#171b21" stroke="#303742" stroke-width="4"/>
+  <circle cx="315" cy="290" r="95" fill="#252b34" stroke="#ff0000" stroke-width="6"/>
+  <path d="M205 500 C245 430 385 430 425 500" fill="none" stroke="#ff4d4d" stroke-width="8"/>
+  <g stroke="#ff0000" stroke-width="3" opacity=".72">
+    <path d="M640 145 h320 M640 195 h220 M640 245 h280 M640 295 h180 M640 345 h330 M640 395 h250 M640 445 h300 M640 495 h210"/>
+  </g>
+  <g fill="none" stroke="#ff4d4d" stroke-width="4">
+    <rect x="252" y="226" width="126" height="126" rx="12"/>
+    <path d="M615 560 C705 455 820 520 920 405 C970 347 1010 320 1080 306"/>
+  </g>
+  <text x="625" y="610" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">DCT Cloaking</text>
+  <text x="80" y="700" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800">Frequency-Domain Adversarial Cloaking</text>
+</svg>

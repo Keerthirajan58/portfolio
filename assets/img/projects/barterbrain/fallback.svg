@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">BarterBrAIn fallback cover</title>
+  <desc id="desc">A red and dark mobile barter app concept showing item exchange, valuation, and sustainability.</desc>
+  <rect width="1200" height="750" fill="#0e1013"/>
+  <circle cx="280" cy="210" r="170" fill="#ff0000" opacity=".12"/>
+  <circle cx="910" cy="515" r="210" fill="#ff0000" opacity=".09"/>
+  <rect x="455" y="90" width="290" height="575" rx="42" fill="#11151b" stroke="#303742" stroke-width="4"/>
+  <rect x="485" y="150" width="230" height="90" rx="18" fill="#202731"/>
+  <rect x="485" y="268" width="230" height="90" rx="18" fill="#202731"/>
+  <rect x="485" y="386" width="230" height="90" rx="18" fill="#202731"/>
+  <path d="M310 380 h135" stroke="#ff0000" stroke-width="10" stroke-linecap="round"/>
+  <path d="M755 380 h135" stroke="#ff0000" stroke-width="10" stroke-linecap="round"/>
+  <path d="M414 343 l40 37 -40 37" fill="none" stroke="#ff0000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M786 343 l-40 37 40 37" fill="none" stroke="#ff0000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="520" y="204" font-size="26">Fair Swap</text>
+    <text x="520" y="322" font-size="26">AI Value</text>
+    <text x="520" y="440" font-size="26">CO2 Saved</text>
+  </g>
+  <text x="80" y="680" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800">BarterBrAIn</text>
+  <text x="82" y="718" fill="#a8b3c3" font-family="Arial, Helvetica, sans-serif" font-size="24">AI-powered campus barter platform</text>
+</svg>
