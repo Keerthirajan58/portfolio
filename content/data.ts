@@ -9,13 +9,18 @@
  * existed on 2026-07-14. Nothing here was invented, embellished, or
  * "improved." Where the source itself was vague, incomplete, or internally
  * inconsistent, that vagueness/inconsistency was preserved and is called out
- * in a comment at the point of use — see also the ambiguity list returned by
- * the content-extractor agent alongside this file.
+ * in a comment at the point of use.
+ *
+ * The content-extractor agent's first pass flagged several ambiguities to
+ * the site owner (GitHub handle inconsistency, missing publication details,
+ * location/email variants, etc.); their answers on 2026-07-14 are reflected
+ * directly in the data below, with the resolution noted in-line where it
+ * isn't self-evident.
  *
  * The only normalization applied anywhere in this file is whitespace
  * collapsing (the legacy HTML hard-wraps long <li> text across source lines).
  * No words, numbers, dates, titles, or names were changed, reordered, or
- * corrected.
+ * corrected beyond the owner's explicit corrections above.
  */
 
 // ---------------------------------------------------------------------------
@@ -38,14 +43,8 @@ export interface Profile {
   /** Rotating "typed.js" role list from the hero, in source order */
   roles: string[];
   heroHighlights: HeroHighlight[];
-  /**
-   * Canonical location string (about.html, the more complete of the two
-   * variants seen on the site). See `locationVariants` for the other exact
-   * string used elsewhere — this is a real inconsistency in the source, not
-   * a typo we're fixing.
-   */
+  /** Canonical location string, confirmed by site owner (source had two variants). */
   location: string;
-  locationVariants: { source: string; text: string }[];
   /** Two paragraphs from about.html's page-title bio, in source order */
   bio: string[];
   /** "Machine Learning Engineer / Software Engineer" heading on about.html */
@@ -60,7 +59,7 @@ export interface Profile {
 }
 
 export interface ContactInfo {
-  /** [primary, secondary], both verbatim. See ambiguity list re: which is current. */
+  /** [primary, secondary]. Primary confirmed current by site owner. */
   emails: string[];
   phone: string;
   whatsapp: string;
@@ -157,7 +156,7 @@ export interface ProjectEntry {
   filters: string[];
   /** Image path used on the portfolio.html grid card itself */
   primaryImage: string;
-  /** Only present for the 6 case-study-style projects (see ambiguity list re: Siri Core Modeling) */
+  /** Only present for the 5 projects with a real project-*.html case-study page (Siri Core Modeling is featured but has no case study — see its `kind` note below) */
   gallery?: ProjectGallery;
   links: {
     detailsPage?: string;
@@ -199,12 +198,7 @@ export const profile: Profile = {
     { icon: "bi-cpu", text: "Apple AIML Intern" },
     { icon: "bi-geo-alt", text: "Arlington, VA" },
   ],
-  location: "Arlington, VA, USA",
-  locationVariants: [
-    { source: "about.html", text: "Arlington, VA, USA" },
-    { source: "contact.html", text: "Arlington, VA" },
-    { source: "index.html hero highlight", text: "Arlington, VA" },
-  ],
+  location: "Arlington, VA",
   bio: [
     "I am a recent Master's in Computer Science graduate from The George Washington University, specializing in AIML and software engineering. My work sits at the intersection of machine learning systems, evaluation design, and practical full-stack development, with recent industry experience as an AIML Machine Learning Engineer intern on Apple's Siri Core Modeling team.",
     "I build data-driven products with a focus on reliable model behavior, clean engineering, and measurable user value. My recent work includes LLM evaluation workflows, transformer-based modeling, mobile applications, applied ML projects, and responsive web experiences.",
@@ -225,15 +219,15 @@ export const profile: Profile = {
 // ---------------------------------------------------------------------------
 
 export const contact: ContactInfo = {
-  // Primary is used everywhere except contact.html; secondary appears only
-  // on contact.html. See ambiguity list.
+  // Primary confirmed current by site owner; secondary kept as a real
+  // alternate contact (both appear on the legacy site).
   emails: ["keerthirajans@gwu.edu", "rajankeerthi0261@gmail.com"],
   phone: "+1 (571) 220-6152",
   whatsapp: "+91 9500525311",
   location: "Arlington, VA",
   social: {
     linkedin: "https://www.linkedin.com/in/keerthirajans58/",
-    github: "https://github.com/keerthirajan58/",
+    github: "https://github.com/Keerthirajan58/",
     leetcode: "https://leetcode.com/u/keerthirajan58/",
   },
   resumeUrl: "assets/Resume - Keerthirajan Senthilkumar.pdf",
@@ -430,7 +424,6 @@ export const projects: ProjectEntry[] = [
     // resume.html and has no Overview/Problem/Engineering/Impact prose, so
     // it does not meet the bar for `kind: "case-study"` even though the
     // portfolio grid presents it as a featured, case-study-style tile.
-    // See ambiguity list.
     kind: "grid",
     featured: true,
     badge: "Featured Experience",
@@ -750,7 +743,7 @@ export const projects: ProjectEntry[] = [
     filters: ["mobile", "aiml"],
     primaryImage: "assets/img/portfolio/app-5.jpg",
     links: {
-      github: "https://github.com/KEERTHIRAJAN026/Mood-Bites---Kotlin-App",
+      github: "https://github.com/Keerthirajan58/Mood-Bites---Kotlin-App",
     },
   },
   {
@@ -765,7 +758,7 @@ export const projects: ProjectEntry[] = [
     filters: ["aiml", "cv"],
     primaryImage: "assets/img/portfolio/app-3.jpg",
     links: {
-      github: "https://github.com/KEERTHIRAJAN026/GI-Tract-Segmentation",
+      github: "https://github.com/Keerthirajan58/GI-Tract-Segmentation",
     },
   },
   {
@@ -781,7 +774,7 @@ export const projects: ProjectEntry[] = [
     primaryImage: "assets/img/portfolio/app-4.jpg",
     links: {
       github:
-        "https://github.com/KEERTHIRAJAN026/IBM-Efficient-Water-Quality-Analysis-and-Prediction",
+        "https://github.com/Keerthirajan58/IBM-Efficient-Water-Quality-Analysis-and-Prediction",
     },
   },
   {
@@ -792,7 +785,7 @@ export const projects: ProjectEntry[] = [
     badge: "Internship Project",
     description:
       "Real-time sentiment analysis web app for extracting product insights from Twitter data.",
-    tags: ["Tweepy", "TextBlob", "Python"],
+    tags: ["Tweepy", "TextBlob", "Python", "Flask"],
     filters: ["aiml", "web"],
     // Same file as siri-core-modeling's primaryImage — reused/shared in the source.
     primaryImage: "assets/img/portfolio/app-1.jpg",
@@ -804,8 +797,6 @@ export const projects: ProjectEntry[] = [
     legacyDetailsNote: {
       sourcePage: "portfolio-details.html",
       category: "TCS - Intern Project",
-      // Note: includes "Flask", which does NOT appear in the portfolio.html
-      // tags list for this same project (Tweepy, TextBlob, Python only).
       techStack: "Python, Tweepy, Textblob, Flask",
       fullDescription:
         "The purpose of this project is to perform real-time sentiment analysis on Twitter data. Users can input either a Twitter username or a hashtag, and the application fetches relevant tweets using the Twitter API. By analyzing these tweets with TextBlob, it categorizes them as Positive, Negative, or Neutral and calculates the percentage for each sentiment. The insights can help businesses make data-driven decisions by understanding public sentiment.",
@@ -826,20 +817,35 @@ export const projects: ProjectEntry[] = [
     primaryImage: "assets/img/portfolio/app-2.jpg",
     links: {
       github:
-        "https://github.com/KEERTHIRAJAN026/DONATE-US-The-sparks-foundation-",
+        "https://github.com/Keerthirajan58/DONATE-US-The-sparks-foundation-",
     },
   },
 
-  // --- Publication ---------------------------------------------------------
+  // --- Publications ----------------------------------------------------------
+  // portfolio.html only had one vague "National Conference Paper" entry;
+  // site owner supplied the real titles/venues/dates for both papers below.
   {
-    slug: "national-conference-paper",
-    title: "National Conference Paper",
+    slug: "gi-tract-segmentation-paper",
+    title:
+      "A Comprehensive Review on Optimized Approach for Gastro-Intestinal Tract Segmentation to Improve Cancer Treatment",
     kind: "publication",
     featured: false,
     badge: "Publication",
-    // Source gives no paper title, venue, or date — copied as-is rather than
-    // guessing. See ambiguity list.
-    description: "Presented research work at a national conference.",
+    description:
+      "Presented at the National Conference on Innovative Computing Research, SVCE, India (May 2023).",
+    tags: [],
+    filters: [],
+    primaryImage: "assets/img/portfolio/product-1.jpg",
+    links: {},
+  },
+  {
+    slug: "sentiment-analysis-survey-paper",
+    title: "Sentiment Analysis of Twitter Comments – A Survey",
+    kind: "publication",
+    featured: false,
+    badge: "Publication",
+    description:
+      "Presented at the National Conference on Youth Advanced Computational Convergence, RGNIYD, India (Mar 2023).",
     tags: [],
     filters: [],
     primaryImage: "assets/img/portfolio/product-1.jpg",
@@ -930,8 +936,9 @@ export const projects: ProjectEntry[] = [
     filters: ["certification"],
     primaryImage: "assets/img/portfolio/branding-4.jpg",
     links: {
-      // Points at the general LinkedIn certifications list, not a specific
-      // credential verification URL. See ambiguity list.
+      // Points at the general LinkedIn certifications list rather than a
+      // specific credential URL — confirmed intentional by site owner (the
+      // LinkedIn page links through to the certificate photo).
       credential: "https://www.linkedin.com/in/keerthirajans58/details/certifications/",
     },
   },
@@ -960,8 +967,8 @@ export const projects: ProjectEntry[] = [
     filters: ["certification"],
     primaryImage: "assets/img/portfolio/branding-7.jpg",
     links: {
-      // Points at the generic NPTEL homepage, not a specific certificate
-      // verification URL. See ambiguity list.
+      // Points at the generic NPTEL homepage rather than a specific
+      // certificate verification URL — confirmed intentional by site owner.
       credential: "https://nptel.ac.in/noc",
     },
   },
