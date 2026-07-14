@@ -1,14 +1,17 @@
 # Portfolio Rebuild — Project Memory
 
 ## What this is
+
 A personal portfolio for an early-career AI/ML Software Engineer & ML Engineer who is actively job hunting. We are replacing a 5-year-old Bootstrap/HTML/CSS/JS site with a modern, fluid, motion-forward portfolio. Full tech stack replacement is authorized. Only the **content** (bio, experience, education, skills, projects, contact info) must be preserved — none of the old code needs to survive.
 
 Read `docs/PLAN.md` for the phased roadmap before starting work each session.
 
 ## Source of truth for content
+
 The old site (present in this repo pre-rebuild) is the ONLY source for facts: job titles, dates, degrees, project descriptions, links, resume file. Never invent, embellish, or "improve" experience. If something is ambiguous or missing, ask the user — don't guess. See the `content-extractor` subagent for how this gets pulled out.
 
 ## Tech stack (locked decisions — don't relitigate mid-project)
+
 - Framework: Next.js (App Router) + TypeScript
 - Styling: Tailwind CSS
 - UI motion: Motion for React (`motion/react` — this is the renamed Framer Motion; do not install the old `framer-motion` package)
@@ -18,21 +21,27 @@ The old site (present in this repo pre-rebuild) is the ONLY source for facts: jo
 - Package manager: npm
 
 ## Commands
-_Fill this in once Phase 1 (scaffold) is done — then keep it updated._
+
 - `npm run dev` — local dev server
 - `npm run build` — production build
-- `npm run lint` — lint
-- `npm run typecheck` — TypeScript check (add the script if it's missing)
+- `npm run start` — run the production build locally
+- `npm run lint` — ESLint (flat config, Next.js core-web-vitals + TS rules, Prettier conflicts disabled)
+- `npm run typecheck` — TypeScript check (`tsc --noEmit`)
+- `npm run format` — Prettier, writes in place (`legacy/`, `node_modules/`, `.next/`, `public/` excluded via `.prettierignore`)
+
+Stack notes for future sessions: App Router lives in `src/app`, real content lives in `src/content/data.ts` (see its header comment for provenance), Tailwind is v4 (`@tailwindcss/postcss`, tokens go in `globals.css` via `@theme`, not a `tailwind.config.ts`). The old Bootstrap site is preserved untouched under `/legacy` for reference — nothing in it is imported by the new app.
 
 ## Design principles — read before building any UI
+
 - Avoid the generic "AI-generated portfolio" defaults: (a) cream background + serif display + terracotta accent, (b) near-black background + one neon accent, (c) newspaper-style broadsheet grid with hairline rules. Pick a direction that's actually specific to an AI/SWE/MLE portfolio, not a template.
-- Work in two passes: first brainstorm a compact design-token system — 4–6 named hex colors, 2 paired typefaces (display + body), a layout concept, and ONE signature element — then critique that plan against the generic defaults above *before* writing any code. Present 2–3 short directions to the user and get a pick before locking tokens.
+- Work in two passes: first brainstorm a compact design-token system — 4–6 named hex colors, 2 paired typefaces (display + body), a layout concept, and ONE signature element — then critique that plan against the generic defaults above _before_ writing any code. Present 2–3 short directions to the user and get a pick before locking tokens.
 - Spend boldness in exactly one place (the signature element). Keep everything around it quiet and disciplined.
 - Motion must be deliberate, never decorative for its own sake. One well-orchestrated moment (hero load-in, or a scroll story) beats scattered effects everywhere.
 - Non-negotiable quality floor: responsive down to ~360px, visible keyboard focus states, `prefers-reduced-motion` respected everywhere (GSAP, Motion, and any WebGL scene need a static/reduced fallback), Lighthouse performance ≥ 90 on mobile.
 - Any Three.js/WebGL content must lazy-load, cap particle/poly counts for low-end devices, and never delay first paint of text content — a recruiter skimming on a phone matters more than a fancy shader.
 
 ## Workflow rules
+
 - Use Plan Mode for any phase touching more than 2–3 files. Don't jump straight to full implementation.
 - Commit after every working milestone (scaffold, tokens locked, each section built, motion layer added, deploy) — small commits, not one giant one.
 - Don't deploy or push to `main` without the user's explicit go-ahead.

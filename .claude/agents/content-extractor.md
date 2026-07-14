@@ -17,6 +17,7 @@ Your only job: read every relevant file in the existing (legacy) portfolio codeb
 - contact/social links, resume/CV file location
 
 Rules:
+
 - Never invent, embellish, or "improve" facts. If something is ambiguous (unclear end date, unclear job title, etc.), flag it clearly in your output instead of guessing.
 - Preserve exact dates, titles, and company names character-for-character.
 - Return the structured data plus a short list of anything you flagged as ambiguous or missing, so the parent agent can ask the user.
