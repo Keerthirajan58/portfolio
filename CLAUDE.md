@@ -40,6 +40,16 @@ Stack notes for future sessions: App Router lives in `src/app`, real content liv
 - Non-negotiable quality floor: responsive down to ~360px, visible keyboard focus states, `prefers-reduced-motion` respected everywhere (GSAP, Motion, and any WebGL scene need a static/reduced fallback), Lighthouse performance ≥ 90 on mobile.
 - Any Three.js/WebGL content must lazy-load, cap particle/poly counts for low-end devices, and never delay first paint of text content — a recruiter skimming on a phone matters more than a fancy shader.
 
+## Locked design direction — "Latent Space" (red/white)
+
+Chosen from 3 brainstormed directions (Phase 2), then refined twice by the owner. Concept: a vector-embedding-space aesthetic — ties directly to the embeddings/semantic-search work in his projects — expressed as a light, red-accented palette with one interactive signature element.
+
+- **Palette** (`src/app/globals.css` `@theme`, mirrored in `src/lib/theme.ts` for JS/canvas use): `paper #FDFCFC` (bg), `surface #F6EEEE` (panels), `ink #171313` (text), `ink-muted #6E6467`, `crimson #E23744` (primary accent), `wine #7A1F2B` (secondary accent). Fixed light theme — no dark-mode toggle.
+- **Type**: display = Unbounded (variable, bold/geometric — chosen over Instrument Sans for a more premium/distinctive feel), body = Inter (variable). Both via `next/font/google`.
+- **Layout concept**: clustered/organic rather than a strict grid — content in loosely grouped blocks, project cards arranged like scatterplot clusters.
+- **Signature element** (Phase 4, not built yet): an interactive node-scatter in the hero — small labeled dots (skills/projects) that drift and cluster on hover/scroll, built with Motion/GSAP (SVG or Canvas, no WebGL). Reduced-motion → static clustered arrangement.
+- Explicitly avoids the generic pitfalls: not cream (crisp white/rose-white instead), not serif, not a flat single neon accent (two considered reds), not a broadsheet grid.
+
 ## Workflow rules
 
 - Use Plan Mode for any phase touching more than 2–3 files. Don't jump straight to full implementation.
