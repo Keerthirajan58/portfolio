@@ -6,6 +6,10 @@ A personal portfolio for an early-career AI/ML Software Engineer & ML Engineer w
 
 Read `docs/PLAN.md` for the phased roadmap before starting work each session.
 
+## Status
+
+All 7 phases in `docs/PLAN.md` are done. The site is live at **https://portfolio-portfolio58.vercel.app** (publicly accessible, no auth wall), deployed from the `redesign` branch. `main` still separately serves the original legacy site via GitHub Pages — merging `redesign` into `main` is a deliberate future decision, not done yet. See "Deployment" below for the operational details.
+
 ## Source of truth for content
 
 The old site (present in this repo pre-rebuild) is the ONLY source for facts: job titles, dates, degrees, project descriptions, links, resume file. Never invent, embellish, or "improve" experience. If something is ambiguous or missing, ask the user — don't guess. See the `content-extractor` subagent for how this gets pulled out.
@@ -31,6 +35,13 @@ The old site (present in this repo pre-rebuild) is the ONLY source for facts: jo
 
 Stack notes for future sessions: App Router lives in `src/app`, real content lives in `src/content/data.ts` (see its header comment for provenance), Tailwind is v4 (`@tailwindcss/postcss`, tokens go in `globals.css` via `@theme`, not a `tailwind.config.ts`). The old Bootstrap site is preserved untouched under `/legacy` for reference — nothing in it is imported by the new app.
 
+## Deployment
+
+- **Live URL**: https://portfolio-portfolio58.vercel.app — Vercel project `portfolio58`, auto-deploys on every push to the `redesign` branch (Production Branch is set to `redesign`, not `main`).
+- `src/lib/site.ts`'s `getSiteUrl()` resolves the canonical domain (used by `metadataBase`, the sitemap, robots.txt, OG images) via `VERCEL_PROJECT_PRODUCTION_URL` — deliberately not `VERCEL_URL`, which is unique per-deployment and changes on every build.
+- Two real Vercel dashboard gotchas hit during Phase 6, worth knowing before touching deployment settings again: (1) "Production Branch" can't be set during the initial import wizard — it's only editable afterward in Settings → Git, and changing it doesn't retroactively redeploy the current build (needs a manual redeploy). (2) Deployment Protection (Vercel Authentication/SSO) is on by default for projects connected to a private repo — it silently makes the site inaccessible to anyone outside the Vercel account/team (including search engines, via a force-added `x-robots-tag: noindex` header on every response) until explicitly disabled in Settings → Deployment Protection.
+- `main` still serves the pre-rebuild legacy site via GitHub Pages, untouched. Merging `redesign` into `main` (and any GitHub Pages changes) is an explicit future cutover, not automatic.
+
 ## Design principles — read before building any UI
 
 - Avoid the generic "AI-generated portfolio" defaults: (a) cream background + serif display + terracotta accent, (b) near-black background + one neon accent, (c) newspaper-style broadsheet grid with hairline rules. Pick a direction that's actually specific to an AI/SWE/MLE portfolio, not a template.
@@ -55,4 +66,4 @@ Chosen from 3 brainstormed directions (Phase 2), then refined twice by the owner
 - Use Plan Mode for any phase touching more than 2–3 files. Don't jump straight to full implementation.
 - Commit after every working milestone (scaffold, tokens locked, each section built, motion layer added, deploy) — small commits, not one giant one.
 - Don't deploy or push to `main` without the user's explicit go-ahead.
-- Delegate to the subagents in `.claude/agents/` for the tasks they own (content extraction, motion/accessibility QA, deployment) instead of doing that work in the main thread — keeps the main context focused on design and implementation.
+- Delegate to the subagents in `.claude/agents/` for the tasks they own (content extraction, motion/accessibility QA, deployment) instead of doing that work in the main thread — keeps the main context focused on design and implementation. Note: in some harnesses these `.md` files aren't selectable as a native `subagent_type` — if so, run them via the `general-purpose` agent type with the relevant persona file's contents pasted directly into the prompt; same effect.
